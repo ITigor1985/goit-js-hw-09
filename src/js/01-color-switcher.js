@@ -17,14 +17,8 @@ const stopChangesBodyColor = () =>{
     timerId=null;
   }
 
-
-btnStart.addEventListener('click',startChangesBodyColor)
-btnStop.addEventListener('click',stopChangesBodyColor)
-
-
-
-
-
+btnStart.addEventListener('click',startChangesBodyColor);
+btnStop.addEventListener('click',stopChangesBodyColor);
 
 function getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
