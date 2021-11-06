@@ -5,13 +5,15 @@ console.log(bodyEl);
 let timerId=null;
 
 const startChangesBodyColor = () =>{
-    if(timerId){
-        return
-    }
+    // if(timerId){ 
+    //     return
+    // }
   timerId =  setInterval(()=>{bodyEl.style.backgroundColor = `${getRandomHexColor()}`},1000);
+  btnStart.setAttribute("disabled", true);
 }
 const stopChangesBodyColor = () =>{
     clearInterval(timerId);
+    btnStart.removeAttribute("disabled");
     timerId=null;
   }
 
