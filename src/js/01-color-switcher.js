@@ -1,7 +1,6 @@
 const btnStart = document.querySelector("button[data-start]");
 const btnStop = document.querySelector("button[data-stop]");
 const bodyEl = document.querySelector("body");
-console.log(bodyEl);
 let timerId=null;
 
 const startChangesBodyColor = () =>{
