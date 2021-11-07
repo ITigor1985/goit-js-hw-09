@@ -24,10 +24,13 @@ const options = {
     } else {
       btnStart.removeAttribute("disabled");
       
-      btnStart.addEventListener('click', () => {timerId = setInterval(() => {
+      btnStart.addEventListener('click', () => {
+        if(timerId){
+          return;
+        }
+        timerId = setInterval(() => {
         estimatedTime = convertMs(endTime - Date.now());
-        
-        time(estimatedTime);
+        timeLeft(estimatedTime);
         if(estimatedTime.seconds == 0){
           btnStart.setAttribute("disabled", true);
           clearInterval(timerId);
@@ -35,22 +38,21 @@ const options = {
         }
       }, 1000);})
       
-    }
-
-    console.log(startTime);
-    console.log(endTime);
-
-    console.log(estimatedTime);
+    }    
   },
 };
 const fp = flatpickr('#datetime-picker', options);
 
-//console.log(fp.selectedDates);
-function time({ days, hours, minutes, seconds }) {
+
+function timeLeft({ days, hours, minutes, seconds }) {
   daysLeft.textContent = `${days}`;
   hoursLeft.textContent = `${hours}`;
   minutesLeft.textContent = `${minutes}`;
   secondsLeft.textContent = `${seconds}`;
+}
+
+function pad ( value) {
+  return String(value).padStart(2, '0');
 }
 
 function convertMs(ms) {
@@ -61,13 +63,13 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+  const days = pad(Math.floor(ms / day));
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = pad(Math.floor((ms % day) / hour));
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = pad(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
 }

@@ -1,13 +1,12 @@
 .container {
   padding-left: 15px;
   padding-right: 15px;
-  max-width: 480px;
   width: 479px;
   margin: 0 auto;
 }
-.flatpickr-input.flatpickr-mobile {
-  font-size: 1rem;
-  margin-bottom: 50px;
+.flatpickr-input {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
   margin-right: 15px;
 }
 button {
@@ -26,7 +25,17 @@ button {
 }
 .field {
   margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   &:last-child {
     margin-right: 0;
   }
+}
+.value {
+  font-size: 55px;
+}
+.label {
+  font-size: 20px;
 }
