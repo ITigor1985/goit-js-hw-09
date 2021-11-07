@@ -7,6 +7,9 @@ let minutesLeft = document.querySelector('span[data-minutes]');
 let secondsLeft = document.querySelector('span[data-seconds]');
 
 const inputeEl = document.querySelector('input[type=text]');
+const btnStart = document.querySelector("button[data-start]");
+btnStart.setAttribute("disabled", true);
+let timerId=null
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -19,10 +22,19 @@ const options = {
     if (startTime > endTime) {
       alert('Please choose a date in the future');
     } else {
-      setInterval(() => {
+      btnStart.removeAttribute("disabled");
+      
+      btnStart.addEventListener('click', () => {timerId = setInterval(() => {
         estimatedTime = convertMs(endTime - Date.now());
+        
         time(estimatedTime);
-      }, 1000);
+        if(estimatedTime.seconds == 0){
+          btnStart.setAttribute("disabled", true);
+          clearInterval(timerId);
+          return
+        }
+      }, 1000);})
+      
     }
 
     console.log(startTime);
